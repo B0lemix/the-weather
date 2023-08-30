@@ -1,2 +1,17 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+	import WeatherContainer from '../components/Container/weather-container.svelte';
+	import { getWeatherFrom } from '../services/weather.js';
+
+	export let weatherPromise = getWeatherFrom();
+</script>
+
+{#await weatherPromise then weather}
+	<main
+		class=" w-full min-h-screen m-auto bg-gradient-to-tl from-yellow-300 via-red-300 to-neutral-100 flex flex-row items-center"
+	>
+		<WeatherContainer {weather} {weatherPromise} />
+	</main>
+{/await}
+
+<style lang="postcss">
+</style>
