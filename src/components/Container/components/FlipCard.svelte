@@ -1,7 +1,7 @@
 <script>
 	export let temperature, text, code, sunrise, sunset;
 
-	let flipped = false;
+	let flipped = true;
 
 	function flip(node, { delay = 0, duration = 1500 }) {
 		return {
