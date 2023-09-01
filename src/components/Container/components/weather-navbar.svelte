@@ -1,12 +1,10 @@
 <script>
 	import WeatherSearch from './weather-search.svelte';
 	export let weather;
-
+	export let forecast;
 	export let onSearch = false;
 	export let visibleButtonSearch = true;
 	import { fade } from 'svelte/transition';
-
-	console.log(onSearch, 'hey');
 </script>
 
 <nav class=" w-full flex flex-row mt-1 p-4 justify-between items-center self-stretch">
@@ -34,7 +32,7 @@
 
 	{#if onSearch && !visibleButtonSearch}
 		<div transition:fade>
-			<WeatherSearch bind:visibleButtonSearch bind:onSearch bind:weather />
+			<WeatherSearch bind:visibleButtonSearch bind:onSearch bind:weather bind:forecast />
 		</div>
 	{/if}
 

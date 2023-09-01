@@ -28,7 +28,7 @@ export async function getWeatherFrom(query='Granada'){
             return{
                 conditionCode:code,
                 conditionText: text,
-                conditionIcon:icon,
+                conditionIcon:icon.replace("64x64", "128x128"),
                 country,
                 localtime,
                 name,

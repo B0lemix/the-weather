@@ -1,11 +1,33 @@
-<section class="flex flex-row mt-4 px-4 justify-center self-stretch items-center">
+<script>
+	import Separate from './separate.svelte';
+	export let selectedOption = 'Today';
+</script>
 
-    <div>
-        <ul class="flex flex-row justify-between gap-6  self-stretch items-center">
-            <li class="text-[#313341] font-bold leading-normal ">Today</li>
-            <li>Tomorrow</li>
-            <li>Next 7 Days</li>
-        </ul>
-
-    </div>
+<section class="flex flex-row mt-1 px-4 justify-center self-stretch items-center">
+	<div>
+		<div class="flex flex-row justify-between gap-6 self-stretch items-center">
+			<button
+				class={` text-[#313341] font-bold leading-normal cursor-pointer ${
+					selectedOption === 'Today' ? 'opacity-90' : ' opacity-30'
+				} `}
+				on:click={() => (selectedOption = 'Today')}>Today</button
+			>
+			<button
+				class={` text-[#313341] font-bold leading-normal cursor-pointer ${
+					selectedOption === 'Tomorrow' ? 'opacity-90' : ' opacity-30'
+				} `}
+				on:click={() => (selectedOption = 'Tomorrow')}>Tomorrow</button
+			>
+			<button
+				class={` text-[#313341] font-bold leading-normal cursor-pointer ${
+					selectedOption === 'Next 7 Days' ? 'opacity-90' : ' opacity-30'
+				} `}
+				on:click={() => (selectedOption = 'Next 7 Days')}>Next 7 Days</button
+			>
+		</div>
+	</div>
 </section>
+<Separate {selectedOption} />
+
+<style>
+</style>

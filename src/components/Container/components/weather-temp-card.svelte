@@ -22,11 +22,27 @@ no active
 </div>
  -->
 
+<script>
+	export let forecastHour;
+	function obtenerHora(fechaHora) {
+		// Dividir la cadena en espacios
+		const partes = fechaHora.split(' ');
 
- <div class="w-14 h-24 px-1 py-1 bg-white bg-opacity-30 rounded-full flex-col justify-center items-center inline-flex">
-    <div class="text-center text-zinc-400 text-sm font-bold">13:00</div>
-    <div class="w-6 h-6 relative">
-      <div class="w-3.5 h-3.5 left-[5px] top-[5px] absolute bg-yellow-400 bg-opacity-20 rounded-full shadow-inner"></div>
-    </div>
-    <div class="text-center text-zinc-700 text-md font-extrabold">21 °</div>
-  </div>
+		// Tomar la segunda parte (la hora)
+		const hora = partes[1];
+
+		return hora;
+	}
+</script>
+
+<div class="relative flex justify-center">
+	<div
+		class=" w-16 h-[110px] px-1 py-6 bg-white bg-opacity-30 rounded-full flex-col justify-center items-center inline-flex"
+	>
+		<div class="text-center text-zinc-400 text-sm font-bold">{obtenerHora(forecastHour.time)}</div>
+
+		<img class="w-12 h-12" src={forecastHour.condition.icon} alt="" />
+
+		<div class="text-center text-zinc-700 text-md font-extrabold">{forecastHour.feelslike_c} °</div>
+	</div>
+</div>

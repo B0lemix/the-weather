@@ -1,16 +1,18 @@
 <script>
 	export let onSearch, visibleButtonSearch, dataSearch;
 	import { getWeatherFrom } from '../../../services/weather';
-
+	import { getForecastFrom } from '../../../services/forecast';
+	export let forecast;
 	export let weather;
 
 	const handleSubmit = async (e) => {
 		// getting the action url
 		/*  console.log(e.target[0].value); */
 		weather = await getWeatherFrom(e.target[0].value.toString());
-
+		forecast= await getForecastFrom(e.target[0].value.toString());
 		/*    weather = await response.json() */
 		console.log(weather);
+		console.log(forecast);
 		/*      console.log(weather); */
 		/*    getWeatherFrom("Madrid") */
 	};
