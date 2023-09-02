@@ -1,13 +1,16 @@
 <script>
-	import WeatherSearch from './weather-search.svelte';
+	import NavbarDropdownMenu from './navbar-dropdown-menu.svelte';
+import WeatherSearch from './weather-search.svelte';
 	export let weather;
 	export let forecast;
 	export let onSearch = false;
 	export let visibleButtonSearch = true;
 	import { fade } from 'svelte/transition';
+
+
 </script>
 
-<nav class=" w-full flex flex-row mt-1 p-4 justify-between items-center self-stretch">
+<nav class=" w-full flex flex-row p-4 justify-between items-center self-stretch">
 	{#if visibleButtonSearch}
 		<button
 			on:click={() => {
@@ -36,5 +39,5 @@
 		</div>
 	{/if}
 
-	<button>Menu</button>
+	<NavbarDropdownMenu/>
 </nav>

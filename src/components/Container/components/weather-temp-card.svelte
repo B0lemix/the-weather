@@ -23,6 +23,11 @@ no active
  -->
 
 <script>
+	import { onMount, afterUpdate, beforeUpdate } from 'svelte';
+	import { fly } from 'svelte/transition';
+	import { cubicOut } from 'svelte/easing';
+
+	let visible = false;
 	export let forecastHour;
 	function obtenerHora(fechaHora) {
 		// Dividir la cadena en espacios
@@ -33,16 +38,35 @@ no active
 
 		return hora;
 	}
+
+	$: {
+		onMount(() => {
+			requestAnimationFrame(() => {
+				setTimeout(() => {
+					visible = true;
+				}, 0);
+			});
+		});
+	}
 </script>
 
-<div class="relative flex justify-center">
+{#if visible}
 	<div
-		class=" w-16 h-[110px] px-1 py-6 bg-white bg-opacity-30 rounded-full flex-col justify-center items-center inline-flex"
+		transition:fly={{ duration: 1700, easing: cubicOut, y: 10, x: 10 }}
+		class="relative flex justify-center"
 	>
-		<div class="text-center text-zinc-400 text-sm font-bold">{obtenerHora(forecastHour.time)}</div>
+		<div
+			class=" w-16 h-[110px] px-1 py-6 bg-white bg-opacity-30 rounded-full flex-col justify-center items-center inline-flex"
+		>
+			<div class="text-center text-zinc-400 text-sm font-bold">
+				{obtenerHora(forecastHour.time)}
+			</div>
 
-		<img class="w-12 h-12" src={forecastHour.condition.icon} alt="" />
+			<img class="w-12 h-12" src={forecastHour.condition.icon} alt="" />
 
-		<div class="text-center text-zinc-700 text-md font-extrabold">{forecastHour.feelslike_c} °</div>
+			<div class="text-center text-zinc-700 text-md font-extrabold">
+				{forecastHour.feelslike_c} °
+			</div>
+		</div>
 	</div>
-</div>
+{/if}

@@ -1,16 +1,28 @@
 <script>
-	import CurrentWeather from './components/current-weather.svelte';
+	import { fade } from 'svelte/transition';
+	import NextDaysView from './components/next-days-view.svelte';
+	import PrimaryView from './components/primary-view.svelte';
+	const views = [PrimaryView, NextDaysView];
 
-	import WeatherCityName from './components/weather-city-name.svelte';
-	import WeatherSelectorDays from './components/weather-selector-days.svelte';
-	import WeatherNavbar from './components/weather-navbar.svelte';
-	import WeatherRows from './components/weather-rows.svelte';
-	import WeatherTempDays from './components/weather-temp-days.svelte';
-	import WeatherCarouselContainer from './components/weather-carousel-container.svelte';
+	let viewportComponent = null;
 
 	export let weather;
 	export let forecast;
 	export let selectedOption;
+	export let visible3days = 0;
+
+	export let toggleView = () => {
+		visible3days = visible3days == 0 ? 1 : 0;
+		console.log(visible3days);
+	};
+
+	function updateViewportComponent() {
+		viewportComponent = views[visible3days];
+	}
+	updateViewportComponent();
+
+	$: {
+	}
 </script>
 
 <!-- 
@@ -41,19 +53,24 @@
 	<div
 		class="rounded-xl overflow-hidden w-[370px] h-[670px] bg-opacity-30 bg-white flex flex-col items-center gap-1 flex-shrink-0"
 	>
-		<WeatherNavbar bind:weather bind:forecast />
-		<WeatherCityName name={weather.name} country={weather.country} date={weather.localtime} />
-		<CurrentWeather
-			temperature={weather.temperature}
-			text={weather.conditionText}
-			icon={weather.conditionIcon}
-			code={weather.conditionCode}
-			sunrise={forecast[0].astro.sunrise}
-			sunset={forecast[0].astro.sunset}
-		/>
-		<WeatherRows humidity={weather.humidity} rain={weather.rain} wind={weather.windSpeed} />
-		<WeatherSelectorDays bind:selectedOption />
-		<WeatherCarouselContainer forecastDays={forecast} {selectedOption} />
-		<!-- 	<WeatherTempDays /> -->
+		<!-- 	<button on:click={toggleView}>Toggle view</button> -->
+		{#if viewportComponent == views[visible3days]}
+			<div
+				class="w-full h-full"
+				id="viewport"
+				on:outroend={updateViewportComponent}
+				transition:fade
+			>
+				<svelte:component
+					this={viewportComponent}
+					{weather}
+					{forecast}
+					{selectedOption}
+					{toggleView}
+				/>
+			</div>
+		{/if}
+		<!-- <PrimaryView {weather} {forecast} {selectedOption}/> -->
+		<!--  <NextDaysView/> -->
 	</div>
 </div>
