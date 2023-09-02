@@ -41,7 +41,7 @@
  -->
 
 <div
-	class="relative mx-auto border-gray-800 dark:border-gray-800 bg-transparent border-[14px] rounded-xl h-[700px] w-[400px] shadow-xl"
+	class="h-screen w-[400px]  md:h-[700px] relative m-auto  md:mx-auto border-gray-800 dark:border-gray-800 bg-transparent border-[14px] rounded-xl  shadow-xl"
 >
 	<div
 		class="w-[148px] h-[18px] bg-gray-800 top-0 rounded-b-[1rem] left-1/2 -translate-x-1/2 absolute"

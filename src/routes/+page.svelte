@@ -10,7 +10,7 @@
 {#await weatherPromise then weather}
 {#await forecastPromise  then forecast }
 <main
-class=" w-full min-h-screen m-auto bg-gradient-to-tl from-yellow-300 via-red-300 to-neutral-100 flex flex-row items-center"
+class=" w-full h-screen  md:min-h-screen m-auto bg-gradient-to-tl from-yellow-300 via-red-300 to-neutral-100 flex flex-row items-center"
 >
 <WeatherContainer weather={weather} weatherPromise={weatherPromise} forecastPromise={forecastPromise} forecast={forecast} />
 </main>
