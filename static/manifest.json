@@ -1,0 +1,13 @@
+{
+    "short_name":"Sol y Lluvia",
+    "name":"Sol y Lluvia - App meteorologica",
+    "start_url":"/",
+    "icons":[{
+        "src":"favicon.svg",
+        "type":"image/svg",
+        "sizes":"512x512"
+    }],
+    "display":"standalone",
+    "scope":"/",
+    "description":"Meto App"
+}
